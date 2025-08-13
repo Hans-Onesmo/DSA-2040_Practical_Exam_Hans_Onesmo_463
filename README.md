@@ -13,11 +13,11 @@ time_id - DimTime
 ### Dimension Tables:
 ![alt text](star_schema-1.png)
 #### 1.DimCustomer
-customer_id(PK)
-name
-gender
-age
-location
+    customer_id(PK)
+    name
+    gender
+    age
+    location
 #### 2.DimProduct
 product_id(PK)
 product_name
