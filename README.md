@@ -19,17 +19,17 @@ time_id - DimTime
     age
     location
 #### 2.DimProduct
-product_id(PK)
-product_name
-category
-brand
-unit_price
+    product_id(PK)
+    product_name
+    category
+    brand
+    unit_price
 #### 3.DimTime
-time_id(PK)
-date
-quarter
-month
-year
+    time_id(PK)
+    date
+    quarter
+    month
+    year
 ### Why Star Schema Over Snowflake
 Star schema since it provides simpler and faster query performance for analytical workloads by minimizing joins between tables. It’s also easier to understand and maintain for analysts, as all dimension tables are directly connected to the fact table without additional normalization layers like in a snowflake schema.
 
@@ -43,8 +43,8 @@ Star schema since it provides simpler and faster query performance for analytica
 -Removes outliers (negative quantities and non-positive unit prices)
 -Creates a new calculated column "TotalSales" (Quantity * UnitPrice)
 -Creates a customer dimension table with:
-    >TotalPurchases (sum of all sales per customer)
-    >Country (from their first transaction)
+>TotalPurchases (sum of all sales per customer)
+>Country (from their first transaction)
 -Filters data to only include sales of the year.
 -Creates a time dimension table with:
     >Unique dates from the last year's sales
