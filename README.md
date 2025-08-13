@@ -35,23 +35,23 @@ Star schema since it provides simpler and faster query performance for analytica
 
 ## B. ETL Process Implementation
 ### 1. Extraction
--Reads an Excel file ("Online Retail.xlsx") with retail transaction data
--Only extracts specific columns needed for the data warehouse
--Drops rows with missing key values (CustomerID, InvoiceDate, Quantity, UnitPrice)
--Converts InvoiceDate to proper datetime format and drops invalid dates
+Reads an Excel file ("Online Retail.xlsx") with retail transaction data.
+Only extracts specific columns needed for the data warehouse.
+Drops rows with missing key values (CustomerID, InvoiceDate, Quantity, UnitPrice).
+Converts InvoiceDate to proper datetime format and drops invalid dates.
 ### 2. Transformation
--Removes outliers (negative quantities and non-positive unit prices)
--Creates a new calculated column "TotalSales" (Quantity * UnitPrice)
--Creates a customer dimension table with:
+Removes outliers (negative quantities and non-positive unit prices).
+Creates a new calculated column "TotalSales" (Quantity * UnitPrice).
+Creates a customer dimension table with:
     TotalPurchases (sum of all sales per customer)
     Country (from their first transaction)
--Filters data to only include sales of the year.
--Creates a time dimension table with:
+Filters data to only include sales of the year.
+Creates a time dimension table with:
     Unique dates from the last year's sales
     Year, Month, and Day columns extracted from the dates
 ### 3. Loading
--Creates/connects to a SQLite database ("retail_dw.db")
--Loads three tables:
+Creates/connects to a SQLite database ("retail_dw.db").
+Loads three tables:
     1.SalesFact (fact table with transactional data)
     2.CustomerDim (customer dimension table)
     3.TimeDim (time dimension table)
@@ -69,9 +69,9 @@ Product categorization showed most items falling into a broad "Other" classifica
 -Need for improved product classification
 -Underperforming categories requiring attention
 ### Strategic recommendations focus on:
--Seasonal inventory optimization
--Enhanced product categorization
--Targeted category performance reviews
+Seasonal inventory optimization
+Enhanced product categorization
+Targeted category performance reviews
 ![alt text](image.png)
 ![alt text](image-1.png)
 
@@ -88,13 +88,13 @@ Checked for missing values (none found)
 Normalized features using Min-Max scaling (0-1 range)
 Encoded species labels numerically
 #### Exploration
-Generated summary statistics
+Generated summary statistics.
 Created visualizations:
-    >Pairplot showing feature relationships
+    Pairplot showing feature relationships
     ![alt text](image-2.png)
-    >Correlation heatmap
+    Correlation heatmap
     ![alt text](image-3.png)
-    >Boxplots for outlier detection
+    Boxplots for outlier detection
     ![alt text](image-4.png)
 #### Train-Test Split
 80% training (120 samples)
@@ -114,9 +114,9 @@ The elbow curve clearly shows an optimal bend at k=3, validating our choice of c
 
 ![alt text](image-6.png)
 Visual analysis reveals:
-    >Setosa (cluster 0) is perfectly separated
-    >Versicolor (cluster 1) and virginica (cluster 2) show some overlap
-    >Approximately 14 instances are misclassified between versicolor and virginica
+    Setosa (cluster 0) is perfectly separated
+    Versicolor (cluster 1) and virginica (cluster 2) show some overlap
+    Approximately 14 instances are misclassified between versicolor and virginica
 
 
 Cluster-Species Comparison:
@@ -126,24 +126,24 @@ setosa       0  50   0
 versicolor  10   0  40
 virginica   42   0   8
 The crosstab shows:
-    >Setosa: 100% correctly clustered (50/50)
-    >Versicolor: 86% correct (43/50)
-    >Virginica: 82% correct (41/50)
+    Setosa: 100% correctly clustered (50/50)
+    Versicolor: 86% correct (43/50)
+    Virginica: 82% correct (41/50)
 
     ~16 total misclassifications out of 150 samples (10.67% error rate)
     ~Versicolor as Virginica: 6 samples misclassified (cluster 2 instead of 1)
     ~Virginica as Versicolor: 10 samples misclassified (cluster 1 instead of 2)
 
 In real-world applications like customer segmentation, this demonstrates:
-    >K-Means works well for distinct groups (setosa)
-    >Performance decreases with overlapping clusters (versicolor/virginica)
-    >The elbow method effectively identifies natural groupings
-    >ARI provides a reliable validation metric
+    K-Means works well for distinct groups (setosa)
+    Performance decreases with overlapping clusters (versicolor/virginica)
+    The elbow method effectively identifies natural groupings
+    ARI provides a reliable validation metric
 
 The results would be similar with synthetic data that maintains the original feature distributions. Key limitations include:
-    >Difficulty handling overlapping clusters
-    >Sensitivity to feature scaling
-    >Assumption of spherical clusters
+    Difficulty handling overlapping clusters
+    Sensitivity to feature scaling
+    Assumption of spherical clusters
 
 This approach would be valuable for initial exploratory analysis in business applications like market segmentation, but may require more sophisticated techniques for precise classification tasks.
 
@@ -169,8 +169,8 @@ Transform data into a transaction matrix for association rule mining.
 Apply Apriori algorithm to find frequent itemsets.
 Generate rules with metrics: support, confidence, and lift.
 Filters rules with:
-    >min_support = 0.2
-    >min_confidence = 0.5
+    min_support = 0.2
+    min_confidence = 0.5
 Sorts rules by Lift to find strongest associations.
 #### Visualization
 ![alt text](image-7.png)
