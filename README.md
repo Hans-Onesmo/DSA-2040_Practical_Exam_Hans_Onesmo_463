@@ -118,12 +118,14 @@ Visual analysis reveals:
 - Approximately 14 instances are misclassified between versicolor and virginica
 
 
-Cluster-Species Comparison:
-cluster      0   1   2
-species               
-setosa       0  50   0
-versicolor  10   0  40
-virginica   42   0   8
+**Cluster-Species Comparison:**
+
+| species     | 0  | 1  | 2  |
+|-------------|----|----|----|
+| setosa      | 0  | 50 | 0  |
+| versicolor  | 10 | 0  | 40 |
+| virginica   | 42 | 0  | 8  |
+
 The crosstab shows:
 - Setosa: 100% correctly clustered (50/50)
 - Versicolor: 86% correct (43/50)
@@ -148,11 +150,13 @@ This approach would be valuable for initial exploratory analysis in business app
 
 ## C. Classification and Association Rule Mining
 ### 1. Classification
-	Metric	    Decision Tree       KNN (k=5)
-0	Accuracy	0.966667	        0.966667
-1	Precision   0.969697	        0.969697
-2	Recall      0.966667	        0.966667
-3	F1-Score	0.966583	        0.966583
+| Metric     | Decision Tree | KNN (k=5)  |
+|------------|---------------|------------|
+| Accuracy   | 0.966667      | 0.966667   |
+| Precision  | 0.969697      | 0.969697   |
+| Recall     | 0.966667      | 0.966667   |
+| F1-Score   | 0.966583      | 0.966583   |
+
 ![alt text](image-8.png)  
 The KNN classifier performs better on accuracy. Both models achieved 96.7% accuracy on a 30-specimen test set. The Decision Tree perfectly classified setosa and virginica but misclassified one versicolor as virginica. KNN correctly identified setosa and versicolor but misclassified one virginica as versicolor. Precision metrics highlight these differences: Decision Tree achieved 100% for versicolor and 91% for virginica, while KNN scored 91% for versicolor and 100% for virginica.  
 ![alt text](image-9.png)  
