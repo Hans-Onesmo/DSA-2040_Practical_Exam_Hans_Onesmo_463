@@ -43,12 +43,12 @@ Star schema since it provides simpler and faster query performance for analytica
 -Removes outliers (negative quantities and non-positive unit prices)
 -Creates a new calculated column "TotalSales" (Quantity * UnitPrice)
 -Creates a customer dimension table with:
->TotalPurchases (sum of all sales per customer)
->Country (from their first transaction)
+    TotalPurchases (sum of all sales per customer)
+    Country (from their first transaction)
 -Filters data to only include sales of the year.
 -Creates a time dimension table with:
-    >Unique dates from the last year's sales
-    >Year, Month, and Day columns extracted from the dates
+    Unique dates from the last year's sales
+    Year, Month, and Day columns extracted from the dates
 ### 3. Loading
 -Creates/connects to a SQLite database ("retail_dw.db")
 -Loads three tables:
